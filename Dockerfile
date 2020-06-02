@@ -16,9 +16,10 @@ RUN useradd -m --shell /bin/bash $USER && \
 
 RUN apt-get clean
 
-RUN echo  "#\!/bin/sh" | sed -e "s/\\\\//g" >  /start.sh
-RUN echo echo [start...]                    >> /start.sh
-RUN echo echo [end.....]                    >> /start.sh
+RUN echo  "#\!/bin/sh" | sed -e "s/\\\\//g"                              >  /start.sh
+RUN echo echo [\`date \'+%Y-%m-%d %H:%M:%S\'\`] [start...] \`hostname\`  >> /start.sh
+RUN echo ""                                                              >> /start.sh
+RUN echo echo [\`date \'+%Y-%m-%d %H:%M:%S\'\`] [end.....] \`hostname\`  >> /start.sh
 RUN chmod +x /start.sh
 RUN cat /start.sh 1>&2
 
